@@ -3,24 +3,23 @@ import {
   action,
   makeObservable,
   computed,
-  configure,
   runInAction,
 } from "mobx";
-import { createContext, SyntheticEvent } from "react";
+import { SyntheticEvent } from "react";
 import { toast } from "react-toastify";
 import { history } from "../..";
 import agent from "../api/agent";
 import { IActivity } from "../models/activity";
+import { RootStore } from "./rootStore";
 
-configure({ enforceActions: "always" });
-class ActivityStore {
+export default class ActivityStore {
   @observable activityRegistry = new Map<string, IActivity>();
   @observable activity: IActivity | null = null;
   @observable loadingInitial = false;
   @observable submitting = false;
   @observable target = "";
 
-  constructor() {
+  constructor(public rootStore: RootStore) {
     makeObservable(this);
   }
 
@@ -158,5 +157,3 @@ class ActivityStore {
     }
   };
 }
-
-export default createContext(new ActivityStore());
