@@ -55,7 +55,7 @@ const ProfilePhotos = () => {
                   <Card key={photo.id}>
                     <Image src={photo.url} />
                     {isCurrentUser && (
-                      <Button.Group fluids widths={2}>
+                      <Button.Group fluids="true" widths={2}>
                         <Button
                           name={photo.id}
                           basic
